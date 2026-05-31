@@ -4,10 +4,8 @@
 
 :root {
   --bg: #05080e;
-  --bg-2: #0b0f16;
-  --card: #11161f;
-  --card-2: #151a22;
-  --line: rgba(255, 255, 255, 0.12);
+  --card: #10151d;
+  --line: rgba(255, 255, 255, 0.1);
   --text: #f5f7fb;
   --muted: #9aa4b2;
   --teal: #00e0c0;
@@ -25,17 +23,17 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-size: 14px;
 }
 
 body {
-  background:
-    radial-gradient(circle at 50% 20%, rgba(0, 224, 192, 0.08), transparent 28%),
-    linear-gradient(180deg, #05080e 0%, #090d14 45%, #05080e 100%);
+  zoom: 0.86;
+  background: #05080e;
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 button,
@@ -44,23 +42,22 @@ textarea {
   font-family: inherit;
 }
 
-::selection {
-  background: rgba(0, 224, 192, 0.35);
-  color: #ffffff;
-}
-
 .vortic-page {
   min-height: 100vh;
   background: #05080e;
 }
 
 .vortic-shell {
-  width: min(1320px, calc(100% - 48px));
+  width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
+  body {
+    zoom: 1;
+  }
+
   .vortic-shell {
-    width: min(100% - 28px, 1320px);
+    width: min(100% - 28px, 1120px);
   }
 }
