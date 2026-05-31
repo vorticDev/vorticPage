@@ -4,12 +4,14 @@
 
 :root {
   --bg: #05080e;
-  --card: #10151d;
-  --line: rgba(255, 255, 255, 0.1);
   --text: #f5f7fb;
   --muted: #9aa4b2;
   --teal: #00e0c0;
   --orange: #ff5b01;
+}
+
+html {
+  font-size: 13px;
 }
 
 html,
@@ -18,16 +20,14 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: var(--bg);
+  background: #05080e;
   color: var(--text);
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  font-size: 14px;
 }
 
 body {
-  zoom: 0.86;
   background: #05080e;
 }
 
@@ -48,16 +48,20 @@ textarea {
 }
 
 .vortic-shell {
-  width: min(1120px, calc(100% - 48px));
+  width: min(1040px, calc(100% - 56px));
   margin: 0 auto;
 }
 
+.MuiTypography-root {
+  font-size-adjust: none;
+}
+
 @media (max-width: 768px) {
-  body {
-    zoom: 1;
+  html {
+    font-size: 14px;
   }
 
   .vortic-shell {
-    width: min(100% - 28px, 1120px);
+    width: min(100% - 28px, 1040px);
   }
 }
