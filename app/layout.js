@@ -29,7 +29,8 @@ export default function RootLayout({ children }) {
 
   const isActive = (href) => {
     if (href === "/") return pathname === "/";
-    return pathname.startsWith(href.replace("/#", "/"));
+    if (href.includes("#")) return false;
+    return pathname.startsWith(href);
   };
 
   return (
@@ -37,10 +38,6 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/logoIcon.ico" />
         <title>VORTIC | Inteligencia Territorial</title>
-        <meta
-          name="description"
-          content="Plataforma de inteligencia territorial para simulación, monitoreo y planificación estratégica basada en datos."
-        />
       </head>
 
       <body>
@@ -48,10 +45,10 @@ export default function RootLayout({ children }) {
           position="fixed"
           elevation={0}
           sx={{
-            height: 72,
-            backgroundColor: "rgba(17,17,17,0.94)",
-            backdropFilter: "blur(18px)",
-            borderBottom: "1px solid rgba(255,255,255,0.16)",
+            height: 56,
+            backgroundColor: "rgba(17,17,17,0.96)",
+            backdropFilter: "blur(16px)",
+            borderBottom: "1px solid rgba(255,255,255,0.12)",
             justifyContent: "center",
             zIndex: 1200,
           }}
@@ -59,17 +56,17 @@ export default function RootLayout({ children }) {
           <Box
             sx={{
               width: "100%",
-              px: { xs: 2, md: 3 },
+              px: { xs: 2, md: 2.5 },
               display: "flex",
               alignItems: "center",
             }}
           >
             <Link href="/">
-              <Stack direction="row" spacing={1.5} alignItems="center">
+              <Stack direction="row" spacing={1.2} alignItems="center">
                 <Box
                   sx={{
-                    width: 44,
-                    height: 44,
+                    width: 34,
+                    height: 34,
                     border: "1px solid rgba(255,255,255,0.16)",
                     display: "grid",
                     placeItems: "center",
@@ -79,15 +76,15 @@ export default function RootLayout({ children }) {
                   <Image
                     src="/logoSmall.svg"
                     alt="Logo VORTIC"
-                    width={34}
-                    height={34}
+                    width={26}
+                    height={26}
                   />
                 </Box>
 
                 <Box>
                   <Typography
                     sx={{
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: 800,
                       letterSpacing: "0.04em",
                       lineHeight: 1,
@@ -97,10 +94,10 @@ export default function RootLayout({ children }) {
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: 10,
-                      letterSpacing: "0.42em",
+                      fontSize: 8,
+                      letterSpacing: "0.34em",
                       color: "#a8b3c2",
-                      mt: 0.7,
+                      mt: 0.5,
                     }}
                   >
                     INTELIGENCIA TERRITORIAL
@@ -111,7 +108,7 @@ export default function RootLayout({ children }) {
 
             <Stack
               direction="row"
-              spacing={2}
+              spacing={1.6}
               sx={{
                 position: "absolute",
                 left: "50%",
@@ -125,13 +122,12 @@ export default function RootLayout({ children }) {
                     <Typography
                       sx={{
                         color: isActive(item.href) ? "#00e0c0" : "#b8c2d2",
-                        fontSize: 13,
-                        letterSpacing: "0.16em",
-                        pb: 2.3,
+                        fontSize: 11,
+                        letterSpacing: "0.15em",
+                        pb: 1.8,
                         borderBottom: isActive(item.href)
                           ? "2px solid #00e0c0"
                           : "2px solid transparent",
-                        transition: "0.2s ease",
                         "&:hover": { color: "#00e0c0" },
                       }}
                     >
@@ -143,9 +139,9 @@ export default function RootLayout({ children }) {
                     <Box
                       sx={{
                         width: "1px",
-                        height: 20,
-                        backgroundColor: "rgba(255,255,255,0.16)",
-                        ml: 2,
+                        height: 16,
+                        backgroundColor: "rgba(255,255,255,0.14)",
+                        ml: 1.6,
                       }}
                     />
                   )}
@@ -160,21 +156,20 @@ export default function RootLayout({ children }) {
                 sx={{
                   display: { xs: "none", md: "flex" },
                   alignItems: "center",
-                  gap: 1,
+                  gap: 0.8,
                   border: "1px solid #00e0c0",
                   color: "#00e0c0",
-                  px: 2.3,
-                  py: 1.1,
-                  borderRadius: "8px",
+                  px: 1.8,
+                  py: 0.85,
+                  borderRadius: "7px",
                   fontWeight: 800,
-                  fontSize: 14,
-                  transition: "0.2s ease",
+                  fontSize: 12,
                   "&:hover": {
                     backgroundColor: "rgba(0,224,192,0.1)",
                   },
                 }}
               >
-                <LoginIcon sx={{ fontSize: 19 }} />
+                <LoginIcon sx={{ fontSize: 17 }} />
                 Iniciar sesión
               </Box>
             </Link>
@@ -194,7 +189,7 @@ export default function RootLayout({ children }) {
           onClose={() => setDrawerOpen(false)}
           PaperProps={{
             sx: {
-              width: 280,
+              width: 260,
               backgroundColor: "#080c12",
               color: "#ffffff",
               borderLeft: "1px solid rgba(255,255,255,0.12)",
@@ -239,7 +234,7 @@ export default function RootLayout({ children }) {
           </Stack>
         </Drawer>
 
-        <Box component="main" sx={{ pt: "72px" }}>
+        <Box component="main" sx={{ pt: "56px" }}>
           {children}
         </Box>
       </body>
