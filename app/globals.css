@@ -1,47 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #05080e;
+  --bg-2: #0b0f16;
+  --card: #11161f;
+  --card-2: #151a22;
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #f5f7fb;
+  --muted: #9aa4b2;
+  --teal: #00e0c0;
+  --orange: #ff5b01;
+}
+
+html,
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  margin: 0 auto;
-  background-color: #1A1A1A;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(0, 224, 192, 0.08), transparent 28%),
+    linear-gradient(180deg, #05080e 0%, #090d14 45%, #05080e 100%);
 }
 
 a {
   text-decoration: none;
-  color: inherit; /* Para que herede el color del elemento padre */
+  color: inherit;
 }
 
-.background-image {
-  position: fixed;
-  width: 100%;
-  object-fit: cover;
-  z-index: -1;
+button,
+input,
+textarea {
+  font-family: inherit;
 }
 
-@media (max-width: 599.99px) { /* xs and down */
-  .background-image {
-    height: 100%;
-  }
-  .m-inline-img {
-    margin-inline: 0;
-  }
+::selection {
+  background: rgba(0, 224, 192, 0.35);
+  color: #ffffff;
 }
 
-@media (min-width: 600px) and (max-width: 959.99px) { /* sm */
-  .background-image {
-    height: 100%;
-  }
-
+.vortic-page {
+  min-height: 100vh;
+  background: #05080e;
 }
 
-@media (min-width: 960px) and (max-width: 1279.99px) { /* md */
-  .background-image {
-    height: 100%;
-  }
-
+.vortic-shell {
+  width: min(1320px, calc(100% - 48px));
+  margin: 0 auto;
 }
 
-@media (min-width: 1280px) { /* lg and up */
-  .background-image {
-    height: 100%;
+@media (max-width: 768px) {
+  .vortic-shell {
+    width: min(100% - 28px, 1320px);
   }
-
 }
