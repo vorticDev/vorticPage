@@ -1,587 +1,507 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Box,
-  Button,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
 
-const integrations = [
-  {
-    title: "FIRMS NASA",
-    category: "INCENDIOS",
-    description: "Incendios activos globales",
-    status: "Cada 3h",
-  },
-  {
-    title: "Copernicus",
-    category: "SATELITAL",
-    description: "Imágenes Sentinel-2",
-    status: "Cada 5 días",
-  },
-  {
-    title: "USGS",
-    category: "SISMOLOGÍA",
-    description: "Sismología global",
-    status: "Tiempo real",
-  },
-  {
-    title: "Open-Meteo",
-    category: "CLIMA",
-    description: "Clima y atmósfera",
-    status: "Cada hora",
-  },
-  {
-    title: "NASA EONET",
-    category: "EVENTOS",
-    description: "Eventos naturales extremos",
-    status: "Diario",
-  },
-  {
-    title: "Mapbox",
-    category: "TERRENO",
-    description: "Terreno 3D y cartografía base",
-    status: "Estático",
-  },
-  {
-    title: "Overpass/OSM",
-    category: "INFRAESTRUCTURA",
-    description: "Infraestructura y servicios",
-    status: "Semanal",
-  },
-  {
-    title: "OpenStreetMap",
-    category: "GIS",
-    description: "Datos geográficos abiertos",
-    status: "Continuo",
-  },
-];
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <Box
-      sx={{
+    <main
+      style={{
         background: "#050816",
         color: "white",
-        overflow: "hidden",
+        minHeight: "100vh",
+        fontFamily: "Arial, sans-serif",
       }}
     >
-      {/* HERO */}
-      <Box
-        sx={{
-          minHeight: "92vh",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          px: 3,
-          background:
-            "radial-gradient(circle at center, rgba(0,224,192,0.08), transparent 40%)",
+      {/* NAVBAR */}
+      <header
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "82px",
+          background: "rgba(5,8,22,0.92)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          zIndex: 1000,
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-            opacity: 0.25,
-          }}
-        />
-
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "-5%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "1400px",
-            height: "500px",
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%)",
-            filter: "blur(60px)",
-            opacity: 0.35,
-          }}
-        />
-
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: "980px",
-            textAlign: "center",
-            zIndex: 2,
+        <div
+          style={{
+            maxWidth: "1600px",
+            margin: "0 auto",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 28px",
           }}
         >
-          <Box
-            sx={{
-              display: "inline-flex",
+          {/* LOGO */}
+          <Link
+            href="/"
+            style={{
+              display: "flex",
               alignItems: "center",
-              gap: 1,
-              px: 3,
-              py: 1.1,
-              borderRadius: "999px",
-              background: "rgba(255,140,0,0.12)",
-              border: "1px solid rgba(255,140,0,0.18)",
-              mb: 4,
+              gap: "14px",
+              textDecoration: "none",
             }}
           >
-            <Box
-              sx={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: "#18f0d1",
+            <img
+              src="/vortic-logo.png"
+              alt="VORTIC"
+              style={{
+                width: "54px",
+                height: "54px",
+                objectFit: "contain",
               }}
             />
-            <Typography
-              sx={{
-                color: "#18f0d1",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                fontSize: 13,
+
+            <div>
+              <div
+                style={{
+                  fontSize: "28px",
+                  fontWeight: 700,
+                  letterSpacing: "2px",
+                  color: "white",
+                }}
+              >
+                VOR<span style={{ color: "#18e0c7" }}>TIC</span>
+              </div>
+
+              <div
+                style={{
+                  fontSize: "11px",
+                  letterSpacing: "4px",
+                  color: "#b8c2d8",
+                  marginTop: "2px",
+                }}
+              >
+                INTELIGENCIA TERRITORIAL
+              </div>
+            </div>
+          </Link>
+
+          {/* MENU */}
+          <nav
+            style={{
+              display: "flex",
+              gap: "42px",
+              alignItems: "center",
+            }}
+          >
+            <a
+              href="#inicio"
+              style={{
+                color: "#18e0c7",
+                textDecoration: "none",
+                fontSize: "15px",
+                letterSpacing: "2px",
               }}
             >
-              PLATAFORMA ACTIVA
-            </Typography>
-          </Box>
+              INICIO
+            </a>
 
-          <Typography
-            sx={{
-              color: "rgba(255,255,255,0.6)",
-              letterSpacing: "0.16em",
+            <a
+              href="#nosotros"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "15px",
+                letterSpacing: "2px",
+              }}
+            >
+              NOSOTROS
+            </a>
+
+            <a
+              href="#contacto"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "15px",
+                letterSpacing: "2px",
+              }}
+            >
+              CONTACTO
+            </a>
+
+            <a
+              href="#faq"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "15px",
+                letterSpacing: "2px",
+              }}
+            >
+              FAQ
+            </a>
+          </nav>
+
+          {/* LOGIN */}
+          <Link
+            href="/login"
+            style={{
+              border: "1px solid #18e0c7",
+              borderRadius: "14px",
+              padding: "14px 28px",
+              color: "#18e0c7",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "16px",
+            }}
+          >
+            Iniciar sesión
+          </Link>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section
+        id="inicio"
+        style={{
+          paddingTop: "150px",
+          paddingBottom: "120px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at center, rgba(24,224,199,0.08), transparent 60%)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "10px 24px",
+              borderRadius: "999px",
+              background: "rgba(24,224,199,0.08)",
+              border: "1px solid rgba(24,224,199,0.18)",
+              color: "#18e0c7",
               fontWeight: 700,
-              fontSize: 14,
-              mb: 3,
+              letterSpacing: "2px",
+              marginBottom: "30px",
+            }}
+          >
+            ● PLATAFORMA ACTIVA
+          </div>
+
+          <div
+            style={{
+              fontSize: "22px",
+              letterSpacing: "5px",
+              color: "#a8b1c7",
+              marginBottom: "22px",
             }}
           >
             INTELIGENCIA TERRITORIAL PARA DECISIONES CRÍTICAS
-          </Typography>
+          </div>
 
-          <Typography
-            sx={{
-              fontSize: { xs: 72, md: 112 },
-              fontWeight: 900,
+          <h1
+            style={{
+              fontSize: "110px",
               lineHeight: 0.95,
+              fontWeight: 800,
+              margin: 0,
             }}
           >
             Planifica.
-          </Typography>
-
-          <Typography
-            sx={{
-              fontSize: { xs: 72, md: 112 },
-              fontWeight: 900,
-              lineHeight: 0.95,
-              color: "#18f0d1",
-            }}
-          >
-            Simula.
-          </Typography>
-
-          <Typography
-            sx={{
-              fontSize: { xs: 72, md: 112 },
-              fontWeight: 900,
-              lineHeight: 0.95,
-              mb: 5,
-            }}
-          >
+            <br />
+            <span style={{ color: "#18e0c7" }}>Simula.</span>
+            <br />
             Actúa.
-          </Typography>
+          </h1>
 
-          <Typography
-            sx={{
-              maxWidth: "760px",
-              mx: "auto",
-              color: "rgba(255,255,255,0.72)",
-              fontSize: 26,
+          <p
+            style={{
+              maxWidth: "900px",
+              margin: "40px auto",
+              fontSize: "28px",
               lineHeight: 1.6,
-              mb: 5,
+              color: "#d0d7e6",
             }}
           >
             Plataforma geoespacial para simulación territorial,
             evaluación de riesgo, análisis GIS y planificación
             estratégica basada en datos.
-          </Typography>
+          </p>
 
-          <Button
-            href="#demo"
-            sx={{
-              background: "#18f0d1",
-              color: "#051015",
-              px: 5,
-              height: 68,
+          <a
+            href="#contacto"
+            style={{
+              display: "inline-block",
+              marginTop: "10px",
+              background: "#18e0c7",
+              color: "#041018",
+              padding: "22px 42px",
               borderRadius: "18px",
-              fontWeight: 800,
-              fontSize: 22,
-              textTransform: "none",
-              boxShadow: "0 0 40px rgba(24,240,209,0.28)",
-              "&:hover": {
-                background: "#18f0d1",
-              },
+              textDecoration: "none",
+              fontWeight: 700,
+              fontSize: "20px",
             }}
           >
             Solicitar DEMO
-          </Button>
-        </Box>
-      </Box>
+          </a>
+        </div>
+      </section>
 
-      {/* INTEGRACIONES */}
-      <Box
-        sx={{
-          width: "min(1500px, calc(100% - 64px))",
-          mx: "auto",
-          py: 12,
+      {/* CONTACTO */}
+      <section
+        id="contacto"
+        style={{
+          padding: "100px 20px",
+          maxWidth: "1400px",
+          margin: "0 auto",
         }}
       >
-        <Typography
-          sx={{
-            color: "#18f0d1",
-            fontWeight: 800,
-            fontSize: 14,
-            letterSpacing: "0.14em",
-            mb: 2,
-          }}
-        >
-          FUENTES DE DATOS
-        </Typography>
-
-        <Typography
-          sx={{
-            fontSize: { xs: 44, md: 64 },
-            fontWeight: 900,
-            lineHeight: 1.05,
-            mb: 3,
-          }}
-        >
-          Integraciones en tiempo real
-        </Typography>
-
-        <Typography
-          sx={{
-            color: "rgba(255,255,255,0.6)",
-            fontSize: 24,
-            lineHeight: 1.6,
-            mb: 8,
-            maxWidth: 700,
-          }}
-        >
-          Satélites, sensores sísmicos y modelos climáticos actualizados constantemente
-        </Typography>
-
-        <Grid container spacing={3}>
-          {integrations.map((item) => (
-            <Grid item xs={12} md={3} key={item.title}>
-              <Box
-                sx={{
-                  background: "#0b1020",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 4,
-                  p: 4,
-                  minHeight: 300,
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    mb: 5,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 52,
-                      height: 52,
-                      borderRadius: 2,
-                      border: "1px solid rgba(255,140,0,0.18)",
-                      background: "rgba(255,140,0,0.08)",
-                    }}
-                  />
-
-                  <Typography
-                    sx={{
-                      color: "#18f0d1",
-                      fontSize: 13,
-                      fontWeight: 700,
-                      letterSpacing: "0.14em",
-                    }}
-                  >
-                    LIVE
-                  </Typography>
-                </Box>
-
-                <Typography
-                  sx={{
-                    fontSize: 34,
-                    fontWeight: 800,
-                    mb: 2,
-                  }}
-                >
-                  {item.title}
-                </Typography>
-
-                <Box
-                  sx={{
-                    display: "inline-flex",
-                    px: 2,
-                    py: 0.7,
-                    borderRadius: 2,
-                    background: "rgba(255,140,0,0.08)",
-                    border: "1px solid rgba(255,140,0,0.16)",
-                    mb: 3,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: "#18f0d1",
-                      fontSize: 12,
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item.category}
-                  </Typography>
-                </Box>
-
-                <Typography
-                  sx={{
-                    color: "rgba(255,255,255,0.62)",
-                    fontSize: 20,
-                    lineHeight: 1.7,
-                    mb: 5,
-                  }}
-                >
-                  {item.description}
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: "rgba(255,255,255,0.38)",
-                    fontSize: 14,
-                  }}
-                >
-                  • {item.status}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-
-      {/* DEMO */}
-      <Box
-        id="demo"
-        sx={{
-          width: "min(1400px, calc(100% - 64px))",
-          mx: "auto",
-          py: 12,
-        }}
-      >
-        <Typography
-          sx={{
+        <div
+          style={{
             textAlign: "center",
-            fontSize: { xs: 54, md: 78 },
-            fontWeight: 900,
-            mb: 2,
+            marginBottom: "60px",
           }}
         >
-          Solicita una demo
-        </Typography>
+          <h2
+            style={{
+              fontSize: "72px",
+              marginBottom: "14px",
+            }}
+          >
+            Solicita una demo
+          </h2>
 
-        <Typography
-          sx={{
-            textAlign: "center",
-            color: "rgba(255,255,255,0.62)",
-            fontSize: 22,
-            mb: 8,
+          <p
+            style={{
+              fontSize: "22px",
+              color: "#b7c1d5",
+            }}
+          >
+            Descubre cómo VORTIC puede potenciar tu territorio.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.2fr 0.8fr",
+            gap: "36px",
           }}
         >
-          Descubre cómo Vortic puede potenciar tu territorio.
-        </Typography>
-
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={7}>
-            <Box
-              component="form"
+          {/* FORMULARIO */}
+          <div
+            style={{
+              background: "#0a1020",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: "28px",
+              padding: "42px",
+            }}
+          >
+            <form
               action="https://formsubmit.co/vorticspa@gmail.com"
               method="POST"
-              sx={{
-                background: "#0b1020",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: 5,
-                p: 5,
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
               }}
             >
-              <Stack spacing={3}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <TextField
-                      fullWidth
-                      placeholder="Tu nombre"
-                      variant="outlined"
-                      InputProps={{
-                        sx: {
-                          height: 68,
-                          borderRadius: 3,
-                          color: "white",
-                        },
-                      }}
-                    />
-                  </Grid>
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nueva solicitud desde VORTIC"
+              />
 
-                  <Grid item xs={12} md={6}>
-                    <TextField
-                      fullWidth
-                      placeholder="tu@email.com"
-                      variant="outlined"
-                      InputProps={{
-                        sx: {
-                          height: 68,
-                          borderRadius: 3,
-                          color: "white",
-                        },
-                      }}
-                    />
-                  </Grid>
-                </Grid>
+              <input
+                type="hidden"
+                name="_captcha"
+                value="false"
+              />
 
-                <TextField
-                  fullWidth
-                  placeholder="+56 9 1234 5678"
-                  variant="outlined"
-                  InputProps={{
-                    sx: {
-                      height: 68,
-                      borderRadius: 3,
-                      color: "white",
-                    },
-                  }}
-                />
+              <input
+                type="hidden"
+                name="_template"
+                value="table"
+              />
 
-                <TextField
-                  fullWidth
-                  placeholder="Nombre de tu organización"
-                  variant="outlined"
-                  InputProps={{
-                    sx: {
-                      height: 68,
-                      borderRadius: 3,
-                      color: "white",
-                    },
-                  }}
-                />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://vortic.tech"
+              />
 
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={6}
-                  placeholder="Cuéntanos sobre tu proyecto o necesidad..."
-                  variant="outlined"
-                  InputProps={{
-                    sx: {
-                      borderRadius: 3,
-                      color: "white",
-                    },
-                  }}
-                />
-
-                <Button
-                  type="submit"
-                  sx={{
-                    background: "#18f0d1",
-                    color: "#051015",
-                    height: 72,
-                    borderRadius: 3,
-                    fontWeight: 800,
-                    fontSize: 22,
-                    textTransform: "none",
-                    "&:hover": {
-                      background: "#18f0d1",
-                    },
-                  }}
-                >
-                  Enviar solicitud
-                </Button>
-              </Stack>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} md={5}>
-            <Stack spacing={4}>
-              <Box
-                sx={{
-                  background: "#0b1020",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 5,
-                  p: 5,
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "16px",
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: 42,
-                    fontWeight: 900,
-                    mb: 4,
-                  }}
-                >
-                  ¿Por qué Vortic?
-                </Typography>
+                <input
+                  type="text"
+                  name="Nombre"
+                  placeholder="Tu nombre"
+                  required
+                  style={inputStyle}
+                />
 
-                <Stack spacing={3}>
-                  {[
-                    "Datos en tiempo real",
-                    "Simulación avanzada",
-                    "Cobertura territorial",
-                  ].map((item) => (
-                    <Typography
-                      key={item}
-                      sx={{
-                        fontSize: 24,
-                        color: "rgba(255,255,255,0.82)",
-                      }}
-                    >
-                      • {item}
-                    </Typography>
-                  ))}
-                </Stack>
-              </Box>
+                <input
+                  type="email"
+                  name="Email"
+                  placeholder="tu@email.com"
+                  required
+                  style={inputStyle}
+                />
+              </div>
 
-              <Box
-                sx={{
-                  background: "#0b1020",
-                  border: "1px solid rgba(255,140,0,0.18)",
-                  borderRadius: 5,
-                  p: 5,
+              <input
+                type="text"
+                name="Telefono"
+                placeholder="+56 9 1234 5678"
+                style={inputStyle}
+              />
+
+              <input
+                type="text"
+                name="Organizacion"
+                placeholder="Nombre de tu organización"
+                style={inputStyle}
+              />
+
+              <textarea
+                name="Mensaje"
+                placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+                rows={6}
+                required
+                style={{
+                  ...inputStyle,
+                  resize: "none",
+                }}
+              />
+
+              <button
+                type="submit"
+                style={{
+                  background: "#18e0c7",
+                  color: "#041018",
+                  border: "none",
+                  borderRadius: "16px",
+                  padding: "20px",
+                  fontSize: "18px",
+                  fontWeight: 700,
+                  cursor: "pointer",
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: 26,
-                    lineHeight: 1.7,
-                    color: "rgba(255,255,255,0.82)",
-                  }}
-                >
-                  "Las ciudades y territorios que mejor responden a las crisis son aquellos que disponen de inteligencia territorial en tiempo real."
-                </Typography>
+                Enviar solicitud
+              </button>
+            </form>
+          </div>
 
-                <Typography
-                  sx={{
-                    mt: 4,
-                    color: "rgba(255,255,255,0.38)",
-                    letterSpacing: "0.14em",
-                    fontSize: 14,
-                  }}
-                >
-                  VORTIC · 2026
-                </Typography>
-              </Box>
-            </Stack>
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+          {/* INFO */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "26px",
+            }}
+          >
+            <div
+              style={{
+                background: "#0a1020",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "28px",
+                padding: "40px",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "38px",
+                  marginBottom: "30px",
+                }}
+              >
+                ¿Por qué VORTIC?
+              </h3>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "24px",
+                  color: "#d8dfec",
+                  fontSize: "20px",
+                  lineHeight: 1.5,
+                }}
+              >
+                <div>
+                  <strong style={{ color: "#18e0c7" }}>
+                    Datos en tiempo real
+                  </strong>
+                  <br />
+                  Satélites, sensores y fuentes oficiales integradas.
+                </div>
+
+                <div>
+                  <strong style={{ color: "#18e0c7" }}>
+                    Simulación avanzada
+                  </strong>
+                  <br />
+                  Modelación territorial y análisis de riesgo.
+                </div>
+
+                <div>
+                  <strong style={{ color: "#18e0c7" }}>
+                    Cobertura territorial
+                  </strong>
+                  <br />
+                  Desde monitoreo comunal hasta análisis regional.
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                background: "#0a1020",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "28px",
+                padding: "40px",
+                fontSize: "24px",
+                lineHeight: 1.7,
+                color: "#d8dfec",
+              }}
+            >
+              “Las ciudades y territorios que mejor responden
+              a las crisis son aquellas que disponen de
+              inteligencia territorial en tiempo real.”
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
+
+const inputStyle = {
+  background: "#071018",
+  border: "1px solid rgba(255,255,255,0.12)",
+  color: "white",
+  borderRadius: "12px",
+  padding: "16px",
+  fontSize: "16px",
+  outline: "none",
+};
