@@ -23,65 +23,91 @@ export default function RootLayout({ children }) {
         <title>VORTIC | Inteligencia Territorial</title>
       </head>
 
-      <body>
+      <body
+        style={{
+          margin: 0,
+          background: "#020817",
+          overflowX: "hidden",
+          fontFamily: "Inter, sans-serif",
+        }}
+      >
         <AppBar
           position="fixed"
           elevation={0}
           sx={{
-            height: 68,
-            background: "#111111",
-            borderBottom: "1px solid rgba(255,255,255,0.12)",
+            height: 72,
+            background: "rgba(10,10,10,0.94)",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(12px)",
             justifyContent: "center",
-            zIndex: 1200,
           }}
         >
           <Box
             sx={{
               width: "100%",
-              px: 2,
+              px: { xs: 2, md: 3 },
               display: "flex",
               alignItems: "center",
             }}
           >
-            <Link href="/" style={{ textDecoration: "none" }}>
-              <Stack direction="row" spacing={1.2} alignItems="center">
+            {/* LOGO */}
+            <Link
+              href="/"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <Stack
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
+              >
                 <Box
                   sx={{
-                    width: 44,
-                    height: 44,
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    display: "grid",
-                    placeItems: "center",
-                    background: "#070b11",
+                    width: 54,
+                    height: 54,
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#0a0f18",
                   }}
                 >
                   <Image
                     src="/logoSmall.svg"
                     alt="VORTIC"
-                    width={32}
-                    height={32}
+                    width={34}
+                    height={34}
                   />
                 </Box>
 
                 <Box>
                   <Typography
                     sx={{
-                      fontSize: 25,
+                      fontSize: "2.2rem",
                       fontWeight: 900,
-                      letterSpacing: "0.04em",
                       lineHeight: 1,
+                      letterSpacing: "-0.04em",
                       color: "#ffffff",
                     }}
                   >
-                    VOR<span style={{ color: "#ff2db2" }}>TIC</span>
+                    VOR
+                    <Box
+                      component="span"
+                      sx={{
+                        color: "#19f5d1",
+                      }}
+                    >
+                      TIC
+                    </Box>
                   </Typography>
 
                   <Typography
                     sx={{
-                      fontSize: 9,
+                      fontSize: "0.62rem",
                       letterSpacing: "0.42em",
-                      color: "rgba(255,255,255,0.78)",
-                      mt: 0.7,
+                      color: "rgba(255,255,255,0.72)",
+                      mt: 0.3,
                     }}
                   >
                     INTELIGENCIA TERRITORIAL
@@ -90,9 +116,10 @@ export default function RootLayout({ children }) {
               </Stack>
             </Link>
 
+            {/* MENU */}
             <Stack
               direction="row"
-              spacing={2.2}
+              spacing={4}
               sx={{
                 position: "absolute",
                 left: "50%",
@@ -102,9 +129,9 @@ export default function RootLayout({ children }) {
             >
               {navItems.map((item) => {
                 const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href.replace("/#", "/"));
+                  pathname === item.href ||
+                  (item.href !== "/" &&
+                    pathname.startsWith(item.href));
 
                 return (
                   <Link
@@ -112,13 +139,24 @@ export default function RootLayout({ children }) {
                     href={item.href}
                     style={{
                       textDecoration: "none",
-                      color: active ? "#ff2db2" : "#c8ced8",
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: "0.18em",
                     }}
                   >
-                    {item.label}
+                    <Typography
+                      sx={{
+                        color: active
+                          ? "#19f5d1"
+                          : "rgba(255,255,255,0.82)",
+                        fontSize: "0.95rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.16em",
+                        transition: "0.25s",
+                        "&:hover": {
+                          color: "#19f5d1",
+                        },
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
                   </Link>
                 );
               })}
@@ -126,29 +164,55 @@ export default function RootLayout({ children }) {
 
             <Box sx={{ flexGrow: 1 }} />
 
-            <Link href="/login" style={{ textDecoration: "none" }}>
+            {/* BOTON LOGIN */}
+            <Link
+              href="/login"
+              style={{
+                textDecoration: "none",
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
-                  border: "1px solid #ff2db2",
+                  px: 2.8,
+                  py: 1.2,
+                  borderRadius: "14px",
+                  border: "1px solid #19f5d1",
                   color: "#ffffff",
-                  px: 2.2,
-                  py: 1,
-                  borderRadius: "8px",
-                  fontWeight: 800,
-                  fontSize: 13,
+                  transition: "0.25s",
+                  "&:hover": {
+                    background: "rgba(25,245,209,0.08)",
+                  },
                 }}
               >
-                <LoginIcon sx={{ fontSize: 18, color: "#ff2db2" }} />
-                Iniciar sesión
+                <LoginIcon
+                  sx={{
+                    fontSize: 18,
+                    color: "#19f5d1",
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                  }}
+                >
+                  Iniciar sesión
+                </Typography>
               </Box>
             </Link>
           </Box>
         </AppBar>
 
-        <Box component="main" sx={{ pt: "68px" }}>
+        <Box
+          component="main"
+          sx={{
+            pt: "72px",
+          }}
+        >
           {children}
         </Box>
       </body>
