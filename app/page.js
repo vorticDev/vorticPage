@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import {
   Accordion,
   AccordionDetails,
@@ -12,580 +14,706 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
 const products = [
   {
     title: "LoitterMAP",
-    text: "Monitoreo territorial en tiempo real con capas climáticas, infraestructura y alertas.",
-    icon: "🛰",
-    live: true,
+    description:
+      "Monitoreo territorial en tiempo real con capas climáticas, infraestructura y alertas.",
   },
   {
     title: "Simulación territorial",
-    text: "Modela escenarios y genera propuestas territoriales con análisis ISI.",
-    icon: "🗺",
+    description:
+      "Modela escenarios y genera propuestas territoriales con análisis ISI.",
   },
   {
     title: "Dashboard GIS",
-    text: "Monitoreo analítico territorial, métricas y distribución de riesgo.",
-    icon: "▦",
+    description:
+      "Monitoreo analítico territorial, métricas y distribución de riesgo.",
   },
   {
     title: "Proyectos",
-    text: "Gestiona proyectos, prioriza y abre proyectos territoriales.",
-    icon: "▤",
+    description:
+      "Gestiona proyectos, prioriza y abre proyectos territoriales.",
   },
   {
     title: "Capas de datos",
-    text: "Explora capas GIS, infraestructura y datos geoespaciales.",
-    icon: "◎",
+    description:
+      "Explora capas GIS, infraestructura y datos geoespaciales.",
+  },
+  {
+    title: "Reportes",
+    description:
+      "Generación de reportes automáticos y ejecutivos con IA.",
   },
 ];
 
-const faqItems = [
+const faq = [
   {
     q: "¿Qué es Vortic?",
-    a: "Vortic es una plataforma de inteligencia territorial que integra datos geoespaciales, climáticos, sísmicos y satelitales para apoyar decisiones críticas.",
+    a: "VORTIC es una plataforma de inteligencia territorial para monitoreo, simulación y análisis geoespacial.",
   },
   {
     q: "¿Qué tipo de datos puede visualizar?",
-    a: "Incendios activos, sismos, clima, infraestructura, imágenes satelitales, capas GIS y datos territoriales personalizados.",
+    a: "Capas GIS, clima, sensores, imágenes satelitales, riesgos territoriales e infraestructura.",
   },
   {
     q: "¿Vortic se puede integrar con otros sistemas?",
-    a: "Sí. Puede conectarse a APIs, bases PostGIS, capas GeoJSON, Shapefile y sistemas institucionales.",
+    a: "Sí. VORTIC puede integrarse mediante APIs y servicios territoriales externos.",
   },
   {
     q: "¿Es una plataforma gratuita?",
-    a: "Actualmente funciona mediante solicitud de demo, pilotos institucionales y planes de implementación.",
+    a: "VORTIC opera mediante licencias, servicios y soluciones personalizadas.",
   },
   {
     q: "¿Puedo integrar mis propias capas de datos?",
-    a: "Sí. Vortic permite integrar capas GIS propias para análisis territorial y simulación.",
+    a: "Sí. Puedes cargar capas geoespaciales y datasets propios.",
   },
   {
     q: "¿Ofrecen soporte técnico?",
-    a: "Sí. Incluimos acompañamiento técnico y soporte según el tipo de implementación.",
+    a: "Sí. Incluye soporte técnico y asesoría especializada.",
   },
 ];
 
-export default function Home() {
+const aboutCards = [
+  {
+    category: "ARQUITECTURA ESPACIAL",
+    title: "Habitabilidad para entornos extremos",
+    description:
+      "La exploración de soluciones para contextos hostiles abrió una pregunta mayor: cómo anticipar, simular y diseñar mejor en la Tierra.",
+    image: "/about/space.jpeg",
+  },
+  {
+    category: "TERRITORIO REAL",
+    title: "Decisiones críticas en terreno",
+    description:
+      "La inteligencia territorial necesita operar donde las decisiones importan: emergencias, infraestructura, riesgo y planificación pública.",
+    image: "/about/territory.jpeg",
+  },
+  {
+    category: "VOZ PÚBLICA",
+    title: "Difusión, liderazgo y transferencia",
+    description:
+      "La misión de VORTIC también es acercar el lenguaje geoespacial a instituciones, comunidades y equipos que deben decidir rápido.",
+    image: "/about/public.png",
+  },
+];
+
+export default function HomePage() {
   return (
     <Box
       sx={{
-        background:
-          "radial-gradient(circle at top, #08111f 0%, #04070d 48%, #02050a 100%)",
+        background: "#030712",
         color: "#ffffff",
-        overflow: "hidden",
+        minHeight: "100vh",
       }}
     >
-      {/* HERO */}
+      {/* NAVBAR */}
       <Box
         sx={{
-          minHeight: "88vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          px: 3,
-          textAlign: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          backdropFilter: "blur(14px)",
+          background: "rgba(3,7,18,0.92)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}
       >
         <Box
           sx={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(circle at center, rgba(0,224,192,0.08), transparent 58%)",
+            maxWidth: "1400px",
+            margin: "0 auto",
+            px: 4,
+            py: 2,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
-        />
+        >
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Image
+              src="/logo.png"
+              alt="VORTIC"
+              width={200}
+              height={55}
+            />
+          </Stack>
 
-        <Box sx={{ position: "relative", zIndex: 2, maxWidth: 820 }}>
-          <Box
-            sx={{
-              display: "inline-flex",
-              px: 2,
-              py: 0.8,
-              borderRadius: "999px",
-              border: "1px solid rgba(0,224,192,0.2)",
-              background: "rgba(0,224,192,0.08)",
-              mb: 3,
-            }}
-          >
-            <Typography
+          <Stack direction="row" spacing={5}>
+            <a href="#inicio" style={navStyle}>
+              INICIO
+            </a>
+
+            <a href="#nosotros" style={navStyle}>
+              NOSOTROS
+            </a>
+
+            <a href="#contacto" style={navStyle}>
+              CONTACTO
+            </a>
+
+            <a href="#faq" style={navStyle}>
+              FAQ
+            </a>
+          </Stack>
+
+          <Link href="/login" style={{ textDecoration: "none" }}>
+            <Button
+              variant="outlined"
               sx={{
-                color: "#00e0c0",
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: 1,
+                borderColor: "#00f5d4",
+                color: "#00f5d4",
+                borderRadius: "14px",
+                px: 3,
+                py: 1,
+                fontWeight: 700,
+                textTransform: "none",
+                fontSize: "0.95rem",
               }}
             >
-              ● PLATAFORMA ACTIVA
-            </Typography>
-          </Box>
-
-          <Typography
-            sx={{
-              color: "#8d97a5",
-              letterSpacing: 2,
-              fontSize: 13,
-              mb: 3,
-            }}
-          >
-            INTELIGENCIA TERRITORIAL PARA DECISIONES CRÍTICAS
-          </Typography>
-
-          {["Planifica.", "Simula.", "Actúa."].map((word) => (
-            <Typography
-              key={word}
-              sx={{
-                fontSize: { xs: 46, md: 76 },
-                fontWeight: 900,
-                lineHeight: 1,
-                color: word === "Simula." ? "#00e0c0" : "#ffffff",
-              }}
-            >
-              {word}
-            </Typography>
-          ))}
-
-          <Typography
-            sx={{
-              color: "#a8b1bc",
-              fontSize: { xs: 16, md: 19 },
-              lineHeight: 1.8,
-              maxWidth: 720,
-              mx: "auto",
-              mt: 4,
-              mb: 5,
-            }}
-          >
-            Plataforma geoespacial para simulación territorial, evaluación de
-            riesgo, análisis GIS y planificación estratégica basada en datos.
-          </Typography>
-
-          <Button
-            component="a"
-            href="#contacto"
-            sx={{
-              background: "#12d7ba",
-              color: "#ffffff",
-              px: 4,
-              py: 1.6,
-              borderRadius: 3,
-              fontWeight: 800,
-              fontSize: 16,
-              textTransform: "none",
-              "&:hover": { background: "#0fc4aa" },
-            }}
-          >
-            Solicitar DEMO →
-          </Button>
+              Iniciar sesión
+            </Button>
+          </Link>
         </Box>
       </Box>
 
-      {/* PRODUCTOS */}
-      <Box sx={{ py: { xs: 7, md: 9 } }}>
-        <Box sx={{ width: "min(1200px, calc(100% - 48px))", mx: "auto" }}>
-          <Typography
-            sx={{
-              fontSize: { xs: 32, md: 46 },
-              fontWeight: 900,
-              mb: 5,
-            }}
-          >
-            ¿Qué puedes hacer con Vortic?
-          </Typography>
+      {/* HERO */}
+      <Box
+        id="inicio"
+        sx={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          px: 4,
+          pt: 10,
+          pb: 14,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: {
+              xs: "2.5rem",
+              md: "4rem",
+            },
+            fontWeight: 800,
+            lineHeight: 1.1,
+            maxWidth: "900px",
+          }}
+        >
+          Inteligencia territorial
+          <Box component="span" sx={{ color: "#00f5d4" }}>
+            {" "}
+            en tiempo real
+          </Box>
+        </Typography>
 
-          <Grid container spacing={3}>
-            {products.map((item, index) => (
-              <Grid item xs={12} md={index < 3 ? 4 : 6} key={item.title}>
-                <Box
+        <Typography
+          sx={{
+            color: "#94a3b8",
+            fontSize: "1.05rem",
+            mt: 3,
+            maxWidth: "700px",
+            lineHeight: 1.8,
+          }}
+        >
+          Monitoreo, simulación y análisis territorial avanzado para
+          instituciones, ciudades y organizaciones críticas.
+        </Typography>
+
+        <Button
+          href="#contacto"
+          sx={{
+            mt: 5,
+            background: "#00f5d4",
+            color: "#000",
+            px: 4,
+            py: 1.5,
+            borderRadius: "14px",
+            fontWeight: 700,
+            textTransform: "none",
+            fontSize: "1rem",
+          }}
+        >
+          Solicitar demo
+        </Button>
+      </Box>
+
+      {/* PRODUCTOS */}
+      <Box
+        sx={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          px: 4,
+          pb: 14,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: "3rem",
+            fontWeight: 800,
+            mb: 6,
+          }}
+        >
+          ¿Qué puedes hacer con Vortic?
+        </Typography>
+
+        <Grid container spacing={4}>
+          {products.map((product, index) => (
+            <Grid item xs={12} md={6} lg={4} key={index}>
+              <Box
+                sx={{
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "24px",
+                  p: 4,
+                  background:
+                    "linear-gradient(180deg, rgba(10,15,30,0.95), rgba(4,8,20,0.95))",
+                  height: "100%",
+                }}
+              >
+                <Typography
                   sx={{
-                    background: "#0b1018",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: 4,
-                    p: 4,
-                    minHeight: 245,
-                    position: "relative",
-                    height: "100%",
+                    fontSize: "1.5rem",
+                    fontWeight: 700,
+                    mb: 2,
                   }}
                 >
-                  {item.live && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: 20,
-                        right: 20,
-                        background: "#12d7ba",
-                        color: "#ffffff",
-                        px: 1.5,
-                        py: 0.4,
-                        borderRadius: "999px",
-                        fontSize: 11,
-                        fontWeight: 800,
-                      }}
-                    >
-                      LIVE
-                    </Box>
-                  )}
+                  {product.title}
+                </Typography>
 
-                  <Typography sx={{ fontSize: 34, mb: 3 }}>
-                    {item.icon}
-                  </Typography>
+                <Typography
+                  sx={{
+                    color: "#94a3b8",
+                    lineHeight: 1.8,
+                    fontSize: "1rem",
+                  }}
+                >
+                  {product.description}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
 
-                  <Typography sx={{ fontSize: 21, fontWeight: 900, mb: 2 }}>
-                    {item.title}
+      {/* NOSOTROS */}
+      <Box
+        id="nosotros"
+        sx={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          px: 4,
+          pb: 14,
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#00f5d4",
+            fontWeight: 700,
+            letterSpacing: "4px",
+            mb: 2,
+          }}
+        >
+          DE LA VISIÓN A LA APLICACIÓN
+        </Typography>
+
+        <Grid container spacing={4}>
+          {aboutCards.map((card, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <Box
+                sx={{
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  background:
+                    "linear-gradient(180deg, rgba(10,15,30,0.95), rgba(4,8,20,0.95))",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: "100%",
+                    height: "300px",
+                  }}
+                >
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    style={{
+                      objectFit: "cover",
+                    }}
+                  />
+                </Box>
+
+                <Box sx={{ p: 4 }}>
+                  <Typography
+                    sx={{
+                      color: "#00f5d4",
+                      fontWeight: 700,
+                      fontSize: "0.85rem",
+                      letterSpacing: "2px",
+                      mb: 2,
+                    }}
+                  >
+                    {card.category}
                   </Typography>
 
                   <Typography
                     sx={{
-                      color: "#9aa4b2",
-                      lineHeight: 1.7,
-                      mb: 4,
-                      maxWidth: 420,
+                      fontSize: "2rem",
+                      fontWeight: 700,
+                      lineHeight: 1.2,
+                      mb: 3,
                     }}
                   >
-                    {item.text}
+                    {card.title}
                   </Typography>
 
-                  <Typography sx={{ color: "#00e0c0", fontWeight: 800 }}>
-                    IR AHORA →
+                  <Typography
+                    sx={{
+                      color: "#94a3b8",
+                      lineHeight: 1.8,
+                      fontSize: "1rem",
+                    }}
+                  >
+                    {card.description}
                   </Typography>
                 </Box>
-              </Grid>
-            ))}
-
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  background: "#0b1018",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 4,
-                  p: 4,
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: 3,
-                }}
-              >
-                <Box>
-                  <Typography sx={{ fontSize: 21, fontWeight: 900, mb: 1 }}>
-                    Reportes
-                  </Typography>
-                  <Typography sx={{ color: "#9aa4b2" }}>
-                    Genera reportes automáticos y ejecutivos.
-                  </Typography>
-                </Box>
-
-                <Typography sx={{ color: "#00e0c0", fontWeight: 800 }}>
-                  IR AHORA →
-                </Typography>
               </Box>
             </Grid>
-          </Grid>
-        </Box>
+          ))}
+        </Grid>
+
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{
+            mt: 6,
+            flexWrap: "wrap",
+          }}
+        >
+          <Button
+            component="a"
+            href="https://sports.revistafactordeexito.com/a/30827/explorando-los-limites-del-espacio-y-la-sostenibilidad-la-vision-de-lia-seguel-alvarado"
+            target="_blank"
+            sx={pressButton}
+          >
+            Factor de Éxito
+          </Button>
+
+          <Button
+            component="a"
+            href="https://www.youtube.com/watch?v=n5sZiuv-2TE"
+            target="_blank"
+            sx={pressButton}
+          >
+            DW Español
+          </Button>
+        </Stack>
       </Box>
 
       {/* CONTACTO */}
       <Box
         id="contacto"
         sx={{
-          py: { xs: 7, md: 9 },
-          borderTop: "1px solid rgba(255,255,255,0.05)",
+          maxWidth: "1400px",
+          margin: "0 auto",
+          px: 4,
+          pb: 14,
         }}
       >
-        <Box sx={{ width: "min(1200px, calc(100% - 48px))", mx: "auto" }}>
-          <Typography
-            sx={{
-              fontSize: { xs: 34, md: 52 },
-              fontWeight: 900,
-              textAlign: "center",
-              mb: 2,
-            }}
-          >
-            Solicita una demo
-          </Typography>
+        <Typography
+          sx={{
+            fontSize: "3rem",
+            fontWeight: 800,
+            textAlign: "center",
+          }}
+        >
+          Solicita una demo
+        </Typography>
 
-          <Typography
-            sx={{
-              color: "#9aa4b2",
-              textAlign: "center",
-              mb: 7,
-              fontSize: 17,
-            }}
-          >
-            Descubre cómo Vortic puede potenciar tu territorio.
-          </Typography>
+        <Typography
+          sx={{
+            textAlign: "center",
+            color: "#94a3b8",
+            mt: 2,
+            mb: 8,
+          }}
+        >
+          Descubre cómo Vortic puede potenciar tu territorio.
+        </Typography>
 
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Box
-                component="form"
-                action="mailto:vorticspa@gmail.com"
-                method="POST"
-                encType="text/plain"
-                sx={{
-                  background: "#0b1018",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 4,
-                  p: 4,
-                }}
-              >
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <TextField fullWidth name="Nombre" label="Nombre" />
-                  </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Box
+              component="form"
+              action="https://formsubmit.co/vorticspa@gmail.com"
+              method="POST"
+              sx={{
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "24px",
+                p: 5,
+                background:
+                  "linear-gradient(180deg, rgba(10,15,30,0.95), rgba(4,8,20,0.95))",
+              }}
+            >
+              <Stack spacing={3}>
+                <TextField
+                  name="nombre"
+                  placeholder="Tu nombre"
+                  fullWidth
+                />
 
-                  <Grid item xs={12} md={6}>
-                    <TextField fullWidth name="Email" label="Email" />
-                  </Grid>
+                <TextField
+                  name="email"
+                  placeholder="tu@email.com"
+                  fullWidth
+                />
 
-                  <Grid item xs={12}>
-                    <TextField fullWidth name="Teléfono" label="Teléfono" />
-                  </Grid>
+                <TextField
+                  name="telefono"
+                  placeholder="+56 9 1234 5678"
+                  fullWidth
+                />
 
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      name="Organización"
-                      label="Organización"
-                    />
-                  </Grid>
+                <TextField
+                  name="organizacion"
+                  placeholder="Nombre de tu organización"
+                  fullWidth
+                />
 
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      multiline
-                      rows={5}
-                      name="Mensaje"
-                      label="Mensaje"
-                    />
-                  </Grid>
+                <TextField
+                  name="mensaje"
+                  placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+                  multiline
+                  rows={5}
+                  fullWidth
+                />
 
-                  <Grid item xs={12}>
-                    <Button
-                      type="submit"
-                      fullWidth
-                      sx={{
-                        background: "#12d7ba",
-                        color: "#ffffff",
-                        py: 1.8,
-                        borderRadius: 3,
-                        fontWeight: 800,
-                        textTransform: "none",
-                        "&:hover": { background: "#0fc4aa" },
-                      }}
-                    >
-                      Enviar solicitud
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid>
+                <Button
+                  type="submit"
+                  sx={{
+                    background: "#00f5d4",
+                    color: "#000",
+                    borderRadius: "14px",
+                    py: 1.8,
+                    fontWeight: 700,
+                    textTransform: "none",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Enviar solicitud
+                </Button>
+              </Stack>
+            </Box>
+          </Grid>
 
-            <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6}>
+            <Stack spacing={4}>
               <Box
                 sx={{
-                  background: "#0b1018",
                   border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: 4,
-                  p: 4,
-                  mb: 4,
+                  borderRadius: "24px",
+                  p: 5,
+                  background:
+                    "linear-gradient(180deg, rgba(10,15,30,0.95), rgba(4,8,20,0.95))",
                 }}
               >
-                <Typography sx={{ fontSize: 28, fontWeight: 900, mb: 4 }}>
+                <Typography
+                  sx={{
+                    fontSize: "2rem",
+                    fontWeight: 700,
+                    mb: 4,
+                  }}
+                >
                   ¿Por qué Vortic?
                 </Typography>
 
                 <Stack spacing={3}>
-                  <Box>
-                    <Typography sx={{ fontWeight: 900 }}>
-                      ◆ Datos en tiempo real
-                    </Typography>
-                    <Typography sx={{ color: "#9aa4b2", mt: 0.6 }}>
-                      Satélites, sensores y fuentes oficiales integradas en un
-                      solo panel.
-                    </Typography>
-                  </Box>
+                  <Typography sx={featureStyle}>
+                    • Datos en tiempo real
+                  </Typography>
 
-                  <Box>
-                    <Typography sx={{ fontWeight: 900 }}>
-                      ◆ Simulación avanzada
-                    </Typography>
-                    <Typography sx={{ color: "#9aa4b2", mt: 0.6 }}>
-                      Modela incendios, inundaciones y riesgo territorial con
-                      IA.
-                    </Typography>
-                  </Box>
+                  <Typography sx={featureStyle}>
+                    • Simulación avanzada
+                  </Typography>
 
-                  <Box>
-                    <Typography sx={{ fontWeight: 900 }}>
-                      ◆ Cobertura total
-                    </Typography>
-                    <Typography sx={{ color: "#9aa4b2", mt: 0.6 }}>
-                      Desde análisis comunal hasta monitoreo nacional con
-                      PostGIS.
-                    </Typography>
-                  </Box>
+                  <Typography sx={featureStyle}>
+                    • Cobertura territorial
+                  </Typography>
                 </Stack>
               </Box>
 
               <Box
                 sx={{
-                  background: "#0b1018",
-                  border: "1px solid rgba(255,91,1,0.22)",
-                  borderRadius: 4,
-                  p: 4,
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "24px",
+                  p: 5,
+                  background:
+                    "linear-gradient(180deg, rgba(10,15,30,0.95), rgba(4,8,20,0.95))",
                 }}
               >
                 <Typography
                   sx={{
-                    color: "#d8dce5",
+                    color: "#94a3b8",
                     lineHeight: 1.8,
-                    fontSize: 18,
+                    fontSize: "1.1rem",
                   }}
                 >
                   "Las ciudades y territorios que mejor responden a las crisis
-                  son aquellos que disponen de inteligencia territorial en tiempo
-                  real."
+                  son aquellos que disponen de inteligencia territorial en
+                  tiempo real."
                 </Typography>
               </Box>
-            </Grid>
+            </Stack>
           </Grid>
-        </Box>
+        </Grid>
       </Box>
 
       {/* FAQ */}
       <Box
         id="faq"
         sx={{
-          py: { xs: 7, md: 9 },
-          borderTop: "1px solid rgba(255,255,255,0.05)",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          px: 4,
+          pb: 14,
         }}
       >
-        <Box sx={{ width: "min(980px, calc(100% - 48px))", mx: "auto" }}>
-          <Typography
-            sx={{
-              color: "#00e0c0",
-              fontWeight: 800,
-              textAlign: "center",
-              mb: 1,
-            }}
-          >
-            FAQ
-          </Typography>
+        <Typography
+          sx={{
+            textAlign: "center",
+            color: "#00f5d4",
+            fontWeight: 700,
+            mb: 2,
+          }}
+        >
+          FAQ
+        </Typography>
 
-          <Typography
-            sx={{
-              fontSize: { xs: 32, md: 46 },
-              fontWeight: 900,
-              textAlign: "center",
-              mb: 5,
-            }}
-          >
-            Preguntas frecuentes
-          </Typography>
+        <Typography
+          sx={{
+            fontSize: "3rem",
+            fontWeight: 800,
+            textAlign: "center",
+            mb: 6,
+          }}
+        >
+          Preguntas frecuentes
+        </Typography>
 
-          <Stack spacing={1.5}>
-            {faqItems.map((item, index) => (
-              <Accordion
-                key={item.q}
-                disableGutters
-                elevation={0}
-                sx={{
-                  background: "#0b1018",
-                  color: "#ffffff",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "14px !important",
-                  "&:before": { display: "none" },
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#9aa4b2" }} />}
+        <Stack spacing={2}>
+          {faq.map((item, index) => (
+            <Accordion
+              key={index}
+              sx={{
+                background: "#08101f",
+                color: "#fff",
+                borderRadius: "16px !important",
+                border: "1px solid rgba(255,255,255,0.06)",
+              }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography sx={{ fontWeight: 700 }}>
+                  {item.q}
+                </Typography>
+              </AccordionSummary>
+
+              <AccordionDetails>
+                <Typography
+                  sx={{
+                    color: "#94a3b8",
+                    lineHeight: 1.8,
+                  }}
                 >
-                  <Typography sx={{ fontWeight: 800 }}>{item.q}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography sx={{ color: "#9aa4b2", lineHeight: 1.7 }}>
-                    {item.a}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Stack>
-        </Box>
+                  {item.a}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Stack>
       </Box>
 
       {/* FOOTER */}
       <Box
         sx={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
           py: 6,
         }}
       >
-        <Box sx={{ width: "min(1200px, calc(100% - 48px))", mx: "auto" }}>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Typography sx={{ fontSize: 26, fontWeight: 900, mb: 2 }}>
-                Vortic
-              </Typography>
-              <Typography sx={{ color: "#9aa4b2", lineHeight: 1.8 }}>
-                Inteligencia Territorial para decisiones críticas. Monitoreo,
-                simulación y análisis GIS.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Typography sx={{ fontWeight: 800, mb: 2 }}>Contacto</Typography>
-              <Typography sx={{ color: "#9aa4b2", mb: 1 }}>
-                vorticspa@gmail.com
-              </Typography>
-              <Typography sx={{ color: "#9aa4b2", mb: 1 }}>
-                Santiago, Chile
-              </Typography>
-              <Typography sx={{ color: "#9aa4b2" }}>
-                +56 9 7896 9866
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Typography sx={{ fontWeight: 800, mb: 2 }}>Redes</Typography>
-              <Link
-                href="https://www.instagram.com/vortic.tech/"
-                target="_blank"
-                style={{ color: "#00e0c0", textDecoration: "none" }}
-              >
-                <InstagramIcon sx={{ verticalAlign: "middle", mr: 1 }} />
-                Instagram @vortic.tech
-              </Link>
-            </Grid>
-          </Grid>
-
-          <Box
-            sx={{
-              borderTop: "1px solid rgba(255,255,255,0.08)",
-              mt: 5,
-              pt: 3,
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: 2,
-            }}
-          >
-            <Typography sx={{ color: "#6f7a88" }}>
-              Tecnología al servicio de territorios más seguros.
+        <Box
+          sx={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            px: 4,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 3,
+          }}
+        >
+          <Stack spacing={1}>
+            <Typography sx={{ fontWeight: 700 }}>
+              VORTIC SPA
             </Typography>
-            <Typography sx={{ color: "#6f7a88" }}>
-              © 2026 VORTIC SPA
+
+            <Typography sx={{ color: "#94a3b8" }}>
+              Inteligencia territorial para decisiones críticas.
             </Typography>
-          </Box>
+          </Stack>
+
+          <Stack direction="row" spacing={3} alignItems="center">
+            <a
+              href="mailto:vorticspa@gmail.com"
+              style={footerLink}
+            >
+              vorticspa@gmail.com
+            </a>
+
+            <Typography sx={{ color: "#94a3b8" }}>
+              +56 9 7896 9866
+            </Typography>
+
+            <a
+              href="https://www.instagram.com/vortic.tech/"
+              target="_blank"
+              style={{ color: "#ffffff" }}
+            >
+              <InstagramIcon />
+            </a>
+          </Stack>
         </Box>
       </Box>
     </Box>
   );
 }
+
+const navStyle = {
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 600,
+  letterSpacing: "1px",
+};
+
+const footerLink = {
+  color: "#94a3b8",
+  textDecoration: "none",
+};
+
+const pressButton = {
+  border: "1px solid rgba(255,255,255,0.1)",
+  color: "#ffffff",
+  borderRadius: "14px",
+  px: 3,
+  py: 1.2,
+  textTransform: "none",
+};
+
+const featureStyle = {
+  color: "#ffffff",
+  fontWeight: 600,
+};
