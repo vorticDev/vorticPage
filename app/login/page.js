@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
   Box,
   Button,
@@ -14,20 +13,18 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import PublicIcon from "@mui/icons-material/Public";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
 
 export default function LoginPage() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        position: "fixed",
+        inset: 0,
+        zIndex: 2000,
         display: "grid",
         gridTemplateColumns: { xs: "1fr", md: "61% 39%" },
         background: "#111111",
         color: "#ffffff",
-        mt: "-72px",
       }}
     >
       <Box
@@ -38,7 +35,6 @@ export default function LoginPage() {
           py: { xs: 5, md: 5 },
           background:
             "radial-gradient(circle at 48% 56%, rgba(255,91,1,0.22), transparent 20%), linear-gradient(135deg,#071019 0%,#0a111c 55%,#111111 100%)",
-          minHeight: { xs: "58vh", md: "100vh" },
         }}
       >
         <Box
@@ -67,18 +63,6 @@ export default function LoginPage() {
           />
         ))}
 
-        <Box
-          sx={{
-            position: "absolute",
-            width: 420,
-            height: 420,
-            borderRadius: "50%",
-            border: "1px solid rgba(0,224,192,0.35)",
-            right: 130,
-            top: -130,
-          }}
-        />
-
         <Box sx={{ position: "relative", zIndex: 2 }}>
           <Stack direction="row" spacing={1.5} alignItems="center">
             <Box
@@ -89,14 +73,10 @@ export default function LoginPage() {
                 display: "grid",
                 placeItems: "center",
                 backgroundColor: "#071017",
+                fontWeight: 900,
               }}
             >
-              <Image
-                src="/logoSmall.svg"
-                alt="Logo VORTIC"
-                width={32}
-                height={32}
-              />
+              V
             </Box>
 
             <Box>
@@ -123,12 +103,7 @@ export default function LoginPage() {
             </Box>
           </Stack>
 
-          <Box
-            sx={{
-              mt: { xs: 10, md: 20 },
-              maxWidth: 650,
-            }}
-          >
+          <Box sx={{ mt: { xs: 10, md: 18 }, maxWidth: 650 }}>
             <Box
               sx={{
                 display: "inline-flex",
@@ -172,57 +147,13 @@ export default function LoginPage() {
               Gestión de desastres, análisis geoespacial y planificación urbana
               integrados en una sola plataforma para Chile y América Latina.
             </Typography>
-
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={2}
-              sx={{ mt: 6 }}
-            >
-              {[
-                { icon: <PublicIcon />, title: "GIS Avanzado", text: "Capas vectoriales" },
-                { icon: <BarChartIcon />, title: "Análisis IA", text: "Groq · Gemini" },
-                { icon: <LayersIcon />, title: "Datos en vivo", text: "USGS · Copernicus" },
-              ].map((item) => (
-                <Box
-                  key={item.title}
-                  sx={{
-                    width: { xs: "100%", sm: 150 },
-                    p: 2,
-                    borderRadius: "12px",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    background: "rgba(255,255,255,0.035)",
-                    backdropFilter: "blur(8px)",
-                  }}
-                >
-                  <Box sx={{ color: "#00e0c0", mb: 1 }}>{item.icon}</Box>
-                  <Typography fontWeight={800} fontSize={14}>
-                    {item.title}
-                  </Typography>
-                  <Typography color="#8d98aa" fontSize={12}>
-                    {item.text}
-                  </Typography>
-                </Box>
-              ))}
-            </Stack>
           </Box>
-
-          <Typography
-            sx={{
-              position: "absolute",
-              bottom: { xs: -80, md: -140 },
-              left: 0,
-              color: "#667184",
-              fontSize: 13,
-            }}
-          >
-            © 2026 Vortic · Todos los derechos reservados
-          </Typography>
         </Box>
       </Box>
 
       <Box
         sx={{
-          minHeight: { xs: "42vh", md: "100vh" },
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -235,7 +166,9 @@ export default function LoginPage() {
           <Link href="/">
             <Stack direction="row" spacing={1} alignItems="center" mb={5}>
               <ArrowBackIcon sx={{ fontSize: 18, color: "#8490a3" }} />
-              <Typography sx={{ color: "#8490a3" }}>Volver al inicio</Typography>
+              <Typography sx={{ color: "#8490a3" }}>
+                Volver al inicio
+              </Typography>
             </Stack>
           </Link>
 
@@ -251,7 +184,7 @@ export default function LoginPage() {
             <TextField
               fullWidth
               label="Correo electrónico"
-              defaultValue="admin@vortic.cl"
+              defaultValue=""
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -271,7 +204,7 @@ export default function LoginPage() {
               fullWidth
               label="Contraseña"
               type="password"
-              defaultValue="123456789"
+              defaultValue=""
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
